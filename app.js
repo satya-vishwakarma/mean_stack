@@ -17,7 +17,7 @@ const config = require('./config/database');
 //.then(() => console.log('MongoDB Connected...'))
 //.catch(err => console.log(err));
 
-
+console.log(config.database);
 // Connect To Database (OLD CODE)
 mongoose.connect(config.database, { useMongoClient: true});
 // On Connection
