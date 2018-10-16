@@ -1,7 +1,7 @@
 {
-  "name": "meanauthapp",
+  "name": "Shopping cart",
   "version": "1.0.0",
-  "description": "MEAN stack authentication app",
+  "description": "MEAN stack Shopping app",
   "main": "app.js",
   "scripts": {
     "start": "node app"
