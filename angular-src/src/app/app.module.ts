@@ -11,6 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AddProductComponent } from './components/admin/add-product/add-product.component';
 
 const appRoutes: Routes =  [
   {path:'', component: DashboardComponent},
@@ -18,6 +19,7 @@ const appRoutes: Routes =  [
   {path:'login', component: LoginComponent}, 
   {path:'profile', component: ProfileComponent},
   {path:'dashboard', component: DashboardComponent}
+  {path:'admin/add-product', component: AddProductComponent}
 ]
 
 
@@ -28,7 +30,8 @@ const appRoutes: Routes =  [
     RegisterComponent,
     DashboardComponent,
     LoginComponent,   
-    ProfileComponent
+    ProfileComponent, 
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
