@@ -3,10 +3,6 @@ const router = express.Router();
 const config = require('../config/database');
 const product = require('../models/product');
 const app = express();
-const bodyParser = require('body-parser');
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 router.post('/get-all-product', (req, res, next) => {
 
@@ -21,14 +17,20 @@ router.post('/get-all-product', (req, res, next) => {
 
 
 router.post('/save-product', (req, res) => {
- 
-  var request = req;
-  console.log(req.body.desccription);
-  //console.log('<>post ' + JSON.stringify(res.body.sdfsd));
-  return res.send(JSON.stringify(res.body));
-  //return  res.json({'data':'sdfsdfas'});
-  /*
-  product.saveProduct((err, product) => {
+  var product_data = {
+    title: req.body.title,
+    desccription: req.body.desccription,
+    image: req.body.image,
+    price: 'dd'
+  }
+  let products_2 = new products ({
+    title: req.body.title,
+    desccription: req.body.desccription,
+    image: req.body.image,
+    price: 'dd'
+  });
+
+  product.saveProduct(products_2,(err, product) => {
     if (err) throw err;
     if (!product) {
       return res.json({ success: false, msg: 'User not found' });
@@ -36,7 +38,7 @@ router.post('/save-product', (req, res) => {
     return res.json({ success: true, data: product });
    
   });
-   */
+  
 });
 
 
