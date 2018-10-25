@@ -25,3 +25,11 @@ const products = module.exports = mongoose.model('products', ProductSchema);
 module.exports.getAllProduct = function(find, callback) {
   products.find(find, callback);
 }
+
+module.exports.saveProduct = function(callback){
+  console.log(callback);
+  console.log('this models');
+  return  333;
+ // products.save(callback);
+}
+  
