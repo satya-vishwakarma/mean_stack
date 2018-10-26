@@ -16,7 +16,7 @@ export class ProductsService {
   getProduct(): Observable<products[]> {
     const headers = new HttpHeaders();
     headers.set('Content-Type', 'application/json; charset=utf-8');
-    return this.http.post('http://localhost:3000/product/get-all-product', { data: false, user: 333 }, { headers: headers })
+    return this.http.post('http://localhost:3000/product/get-all-product', { data: false, user: 333 })
       .pipe(map((response: Response) => response['data']));
   }
 }
