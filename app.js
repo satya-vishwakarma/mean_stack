@@ -17,7 +17,6 @@ const config = require('./config/database');
 //.then(() => console.log('MongoDB Connected...'))
 //.catch(err => console.log(err));
 
-console.log(config.database);
 // Connect To Database (OLD CODE)
 mongoose.connect(config.database, { useMongoClient: true});
 // On Connection
@@ -33,6 +32,8 @@ const app = express();
 
 const users = require('./routes/users');
 const product = require('./routes/product');
+
+app.use(bodyParser.json());
 
 // Port Number
 const port = config.port || 8080;

@@ -2,7 +2,11 @@ const mongoose = require('mongoose');
 const config = require('../config/database');
 
 // Product Schema
-const ProductSchema = mongoose.Schema ({
+const ProductSchema = mongoose.Schema ({ 
+  local : {
+    username : String,
+    password : String,
+  },
   title: {
     type: String,
     required : true
@@ -25,3 +29,9 @@ const products = module.exports = mongoose.model('products', ProductSchema);
 module.exports.getAllProduct = function(find, callback) {
   products.find(find, callback);
 }
+
+module.exports.saveProduct = function(product_data , callback){
+  product_data.save(callback);
+  //products.save(product_data, callback);
+}
+  
