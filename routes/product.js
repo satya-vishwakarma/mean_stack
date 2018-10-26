@@ -27,14 +27,11 @@ router.post('/save-product', (req, res) => {
     title: req.body.title,
     desccription: req.body.desccription,
     image: req.body.image,
-    price: 'dd'
+    price: req.body.price
   });
 
   product.saveProduct(products_2,(err, product) => {
-    if (err) throw err;
-    if (!product) {
-      return res.json({ success: false, msg: 'User not found' });
-    }
+    if (err) throw err;    
     return res.json({ success: true, data: product });
    
   });

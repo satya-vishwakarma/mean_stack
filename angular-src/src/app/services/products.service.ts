@@ -21,12 +21,9 @@ export class ProductsService {
   }
 
 
-  saveProduct(prod_data){    
-    const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
+  saveProduct(prod_data) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
     return this.http.post('http://localhost:3000/product/save-product', JSON.stringify(prod_data), { headers: headers })
-    .subscribe( (res  :Response) => { 
-    res;
-    });
-
+      .pipe(map((response: Response) => response));
   }
 }

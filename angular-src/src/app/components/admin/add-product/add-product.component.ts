@@ -8,36 +8,52 @@ import { ProductsService } from '../../../services/products.service';
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css']
 })
-export class AddProductComponent implements OnInit { product_form: FormGroup;
+export class AddProductComponent implements OnInit {
+    product_form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private productsservice: ProductsService ) { }
-   public submitted =false;
-   public product  = [];
+  constructor(private formBuilder: FormBuilder, private productsservice: ProductsService) { }
+  public submitted = false;
+  public product = [];
   ngOnInit() {
     this.product_form = this.formBuilder.group({
       title: ['', Validators.required],
       image: ['', Validators.required],
       desc: ['', Validators.required],
+      price: ['', Validators.required]
     });
   }
   get f() {
     return this.product_form.controls;
-   }
-  addProduct(product_data) {    
-    this.submitted = true;
-    console.log(product_data);
-  if (this.product_form.invalid) {
-      return;
   }
+  addProduct(product_data) {
+    this.submitted = true;    
+    if (this.product_form.invalid) {
+      return;
+    }
 
     var prod_d = {
       title: product_data.title,
       desccription: product_data.desc,
       image: product_data.image,
-      price: '234234'
+      price: product_data.price
     };
- return this.productsservice.saveProduct(prod_d);
-  //console.log(product_data);
+   
+    var return_data =  this.productsservice.saveProduct(prod_d)
+    .subscribe(return_data  => {     
+     if(return_data['success'])
+      {
+       // this.product_form.reset(); 
+      }else{
+        
+      }
+
+     
+    } );
+
+    //this.product_form.reset();
+    //console.log(return_data);
+   //return return_data;
+    //console.log(product_data);
 
 
   }
