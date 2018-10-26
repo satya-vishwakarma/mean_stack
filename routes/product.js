@@ -23,7 +23,7 @@ router.post('/save-product', (req, res) => {
     image: req.body.image,
     price: 'dd'
   }
-  let products_2 = new products ({
+  let products_2 = new product ({
     title: req.body.title,
     desccription: req.body.desccription,
     image: req.body.image,

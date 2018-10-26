@@ -21,14 +21,11 @@ export class ProductsService {
   }
 
 
-  saveProduct(prod_data){
-    //var headers = new HttpHeaders();
-    //headers.set('Content-Type', 'application/json');
-    //console.log(headers, headers.get('Content-Type'));
+  saveProduct(prod_data){    
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
-    this.http.post('http://localhost:3000/product/save-product', JSON.stringify(prod_data), { headers: headers })
-    .subscribe( (head : HttpHeaders) => { 
-      console.log(head.get('Content-Type'));
+    return this.http.post('http://localhost:3000/product/save-product', JSON.stringify(prod_data), { headers: headers })
+    .subscribe( (res  :Response) => { 
+    res;
     });
 
   }
