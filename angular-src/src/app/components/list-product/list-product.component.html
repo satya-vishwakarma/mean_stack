@@ -1,0 +1,34 @@
+<div class="mat-elevation-z8">
+  <mat-table [dataSource]="listData"  matSort>
+    <ng-container matColumnDef="productName">
+      <mat-header-cell *matHeaderCellDef> Product Name </mat-header-cell>
+    <mat-cell *matCellDef = "let element"> {{element.title }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="discription">
+        <mat-header-cell *matHeaderCellDef> Desccription </mat-header-cell>
+      <mat-cell *matCellDef = "let element"> {{element.desccription}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="image">
+          <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
+        <mat-cell *matCellDef = "let element"> <img height="100px" width="150px" src="{{element.image}}" /></mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+          <mat-cell *matCellDef = "let element"> {{element.price |currency }}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="action">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let row">
+                <button mat-icon-button>
+                  <mat-icon>launch</mat-icon>
+                </button>
+                <button mat-icon-button color="warn">
+                  <mat-icon>delete_outline</mat-icon>
+                </button>
+              </mat-cell>
+            </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>
