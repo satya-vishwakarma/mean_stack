@@ -1,7 +1,12 @@
 
 /* You can add global styles to this file, and also import other style files */
-.form-control .ng-touched .ng-invalid {
-	border: 1px solid red ;
-}
-.error {color: red}
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+.button-row button{
+	margin: 5px;
+}
+
+.example-button-row button,
+.example-button-row a {
+  margin-right: 8px;
+}

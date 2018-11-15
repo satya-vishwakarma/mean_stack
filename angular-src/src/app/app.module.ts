@@ -16,6 +16,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AddProductComponent } from './components/admin/add-product/add-product.component';
 import { ListProductComponent } from './components/list-product/list-product.component';
+import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
 
 const appRoutes: Routes =  [
   {path:'', component: DashboardComponent},
@@ -36,7 +37,7 @@ const appRoutes: Routes =  [
     DashboardComponent,
     LoginComponent,   
     ProfileComponent, 
-    AddProductComponent, ListProductComponent
+    AddProductComponent, ListProductComponent, MatConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +49,7 @@ const appRoutes: Routes =  [
     BrowserAnimationsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [MatConfirmDialogComponent]
 })
 export class AppModule { }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from '../../services/products.service';
 import { Observable } from 'rxjs';
-import { products } from '../../../config/productInterface'
+import { products } from '../../../config/productInterface';
+import {DialogService } from '../../services/dialog.service';
 
 @Component({
   selector: 'app-list-product',
@@ -10,7 +11,7 @@ import { products } from '../../../config/productInterface'
 })
 export class ListProductComponent implements OnInit {
 
-  constructor(private productsservice: ProductsService) { }
+  constructor(private productsservice: ProductsService ,private dialogservice : DialogService) { }
 
   listData: any;
   displayedColumns: string[] = ['productName','discription','image','price', 'action'];
@@ -18,6 +19,10 @@ export class ListProductComponent implements OnInit {
   ngOnInit() {
     
     this.listData = this.productsservice.getProduct();
+  }
+
+  deleteProduct() {
+    this.dialogservice.openConfirmDialog();
   }
 
 }
