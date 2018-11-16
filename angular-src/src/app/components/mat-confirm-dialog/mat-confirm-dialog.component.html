@@ -1,3 +1,8 @@
-<p>
-  mat-confirm-dialog works!
-</p>
+<div>
+  <div class="content-container">
+    <mat-icon id="close-icon" (click)= 'closeDialog(false)' > close </mat-icon>
+    <span class="content-span full-width">{{data.messages}}</span>
+  </div>
+  <button  mat-flat-button id = "no-button"  (click)= 'closeDialog(false)' > No</button>
+  <button mat-flat-button id = "yes-button"  (click)= 'closeDialog(true)'> yes</button>
+</div>

@@ -38,6 +38,18 @@ router.post('/save-product', (req, res) => {
   
 });
 
+router.post('/delete-product', (req, res, next) => {
+console.log(req.body.primary_key);
+  product.deletePoduct(req.body.primary_key, (err, product) => {
+    if (err) throw err;
+    if (!product) {
+      return res.json({ success: false, msg: 'product has been deleted successfully....' });
+    }
+    return res.json({ success: true, data: product });
+  });
+});
+
+
 
 
 

@@ -34,4 +34,7 @@ module.exports.saveProduct = function(product_data , callback){
   product_data.save(callback);
   //products.save(product_data, callback);
 }
+module.exports.deletePoduct = function (id, callback){  
+  products.findByIdAndRemove(id ,callback);
+}
   
