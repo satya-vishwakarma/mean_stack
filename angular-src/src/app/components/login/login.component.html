@@ -1,14 +1,14 @@
-<form class="example-form">
+<form class="example-form" [formGroup]="rFrom" (ngSubmit)="login(rFrom.value);">
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="User Name" value="">
+    <input formControlName="name" matInput  name="name" placeholder="User Name" value="">
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+    <input formControlName="password" matInput name="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
   </mat-form-field>
   <div class="button-row">
-    <button mat-raised-button color="primary">Login</button>
+    <button mat-raised-button color="primary" [disabled]= "!rFrom.valid">Login</button>
     <button mat-raised-button color="warn">Clear</button>
   </div>
 </form>

@@ -31,8 +31,6 @@ export class ProductsService {
     console.log(id);
     const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
     return this.http.post('http://localhost:3000/product/delete-product', {primary_key : id}, { headers: headers })
-      .pipe(map((response: Response) => response)).subscribe(res => {
-        return res;
-      });
+      .pipe(map((response: Response) => response));
   }
 }
