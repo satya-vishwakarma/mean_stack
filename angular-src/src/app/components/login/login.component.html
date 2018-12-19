@@ -9,6 +9,6 @@
   </mat-form-field>
   <div class="button-row">
     <button mat-raised-button color="primary" [disabled]= "!rFrom.valid">Login</button>
-    <button mat-raised-button color="warn">Clear</button>
+    <button mat-raised-button color="warn" (click) = "resetForm();">Clear</button>
   </div>
 </form>

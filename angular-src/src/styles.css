@@ -138,3 +138,14 @@ border-radius: 0px;
   text-align: center;
   font-size: 20px;
 }
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  margin: 38px auto;
+}
+
+.example-full-width {
+  width: 100%;
+}

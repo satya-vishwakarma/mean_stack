@@ -23,9 +23,19 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login  (post){
+  login (post) :void {
     console.log('sdf',post);
-    this.rFrom.reset();
+    
+   // this.rFrom.reset();
+   
+  //console.log( this.rFrom);
   }
+  resetForm () 
+  {
+    this.rFrom.reset();
+    
+  }
+
+
 
 }
