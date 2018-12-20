@@ -27,7 +27,7 @@ const ProductSchema = mongoose.Schema ({
 
 const products = module.exports = mongoose.model('products', ProductSchema);
 module.exports.getAllProduct = function(find, callback) {
-  products.find(find, callback);
+  products.find({email = 222}, callback);
 }
 
 module.exports.saveProduct = function(product_data , callback){

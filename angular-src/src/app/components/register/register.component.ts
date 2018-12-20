@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import  { customvalidators } from '../../shered/custom.validators';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -9,6 +11,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
+  hide = true;
+  hide2 = true;
   submitted = false;
   regForm : FormGroup;
   userName:string = '';
@@ -22,8 +26,10 @@ export class RegisterComponent implements OnInit {
       email : [null , [Validators.required,Validators.email]],
       phone : [null , Validators.required],
       newPassword : [ null ,Validators.required],
-      confirmPassoword : [null ,Validators.required]
-    })
+      confirmPassoword : [null , [Validators.required]]
+    },{
+      validator : customvalidators.passwordMatch.bind(this)
+    });
    }
 
   ngOnInit() {

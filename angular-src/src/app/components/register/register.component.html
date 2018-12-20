@@ -19,8 +19,8 @@
   </mat-form-field>
 
   <mat-form-field class="example-full-width">
-    <input matInput formControlName="confirmPassoword" name="confirmPassoword" placeholder="Confirm  password" [type]="hide ? 'password' : 'text'">
-    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <input matInput formControlName="confirmPassoword" name="confirmPassoword" placeholder="Confirm  password" [type]="hide2? 'password' : 'text'">
+    <mat-icon matSuffix (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
   </mat-form-field>
   <div class="button-row">
     <button mat-raised-button color="primary" [disabled]="!regForm.valid">Register</button>
