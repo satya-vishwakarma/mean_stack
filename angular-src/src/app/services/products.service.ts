@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders ,HttpErrorResponse } from '@angular/common/http';
 import { Response } from '@angular/http';
-import { map } from "rxjs/operators";
+import { map ,catchError } from "rxjs/operators";
 import { Observable } from 'rxjs';
-import { products } from '../../config/productInterface'
+import { products } from '../../config/productInterface';
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,10 @@ export class ProductsService {
 
   getProduct(): Observable<products[]> {
     return this.http.post('http://localhost:3000/product/get-all-product', { data: false, user: 333 })
-      .pipe(map((response: Response) => response['data']));
+      .pipe( catchError(( res : HttpErrorResponse)=>{
+        alert('Opps : the request could not be performed');
+        return res.error;
+      } ) ,map((response: Response) => response['data']));
   }
 
 
