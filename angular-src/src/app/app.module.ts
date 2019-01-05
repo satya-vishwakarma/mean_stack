@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from "./material/material.module";
-
-
+import {ToastyModule} from 'ng2-toasty';
+/** 
+ *  Component imported
+ */
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -17,6 +18,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AddProductComponent } from './components/admin/add-product/add-product.component';
 import { ListProductComponent } from './components/list-product/list-product.component';
 import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
+
 
 const appRoutes: Routes =  [
   {path:'', component: DashboardComponent},
@@ -46,7 +48,8 @@ const appRoutes: Routes =  [
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastyModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

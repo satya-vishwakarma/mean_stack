@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from '../../../services/products.service';
+import { GrowlService } from '../../../services/growl.service';
+import { Router } from '@angular/router';
+
+
 
 
 @Component({
@@ -9,9 +13,16 @@ import { ProductsService } from '../../../services/products.service';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-    product_form: FormGroup;
+  product_form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private productsservice: ProductsService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private productsservice: ProductsService,
+    private GrowlService: GrowlService,
+    private router: Router
+  ) {
+
+  }
   public submitted = false;
   public product = [];
   ngOnInit() {
@@ -26,7 +37,7 @@ export class AddProductComponent implements OnInit {
     return this.product_form.controls;
   }
   addProduct(product_data) {
-    this.submitted = true;    
+    this.submitted = true;
     if (this.product_form.invalid) {
       return;
     }
@@ -37,24 +48,19 @@ export class AddProductComponent implements OnInit {
       image: product_data.image,
       price: product_data.price
     };
-   
-    var return_data =  this.productsservice.saveProduct(prod_d)
-    .subscribe(return_data  => {     
-     if(return_data['success'])
-      {
-       // this.product_form.reset(); 
-      }else{
-        
-      }
 
-     
-    } );
+    var return_data = this.productsservice.saveProduct(prod_d)
+      .subscribe(return_data => {
+        if (return_data['success']) {
+          this.GrowlService.success('Product save successfully.....');
+          this.GrowlService.Redirect('/admin/list-product');
+        }
+      });
+  }
 
-    //this.product_form.reset();
-    //console.log(return_data);
-   //return return_data;
-    //console.log(product_data);
+  addToast() {
 
+    this.GrowlService.success('Product add Successfully.....');
 
   }
 

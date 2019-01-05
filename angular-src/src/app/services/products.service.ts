@@ -5,6 +5,7 @@ import { map ,catchError } from "rxjs/operators";
 import { Observable } from 'rxjs';
 import { products } from '../../config/productInterface';
 
+import { GrowlService } from '../services/growl.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class ProductsService {
   private product = [];
   public product_list = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient , private GrowlService : GrowlService) { }
 
   getProduct(): Observable<products[]> {
     return this.http.post('http://localhost:3000/product/get-all-product', { data: false, user: 333 })
@@ -28,7 +29,11 @@ export class ProductsService {
   saveProduct(prod_data) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
     return this.http.post('http://localhost:3000/product/save-product', JSON.stringify(prod_data), { headers: headers })
-      .pipe(map((response: Response) => response));
+      .pipe( catchError(( res : HttpErrorResponse)=>{
+       // alert('Opps : the request could not be performed');
+       this.GrowlService.error('Service unavailable. please try again later');
+        return res.error;
+      } ) ,map((response: Response) => response));
   }
 
   deletePoduct(id) {
