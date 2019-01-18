@@ -4,6 +4,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const User = require('../models/user');
+const common = require ('../common/common');
 
 // Register
 router.post('/register', (req, res, next) => {
@@ -30,7 +31,7 @@ router.post('/authenticate', (req, res, next) => {
   User.getUserByUsername(username, (err, user) => {
     if(err) throw err;
     if(!user) {
-      return res.json({success: false, msg: 'User not found'});
+      return res.status(401).json({"status":401 ,"messages":"Authenticattion Required"});      
     }
 
     User.comparePassword(password, user.password, (err, isMatch) => {
@@ -50,7 +51,7 @@ router.post('/authenticate', (req, res, next) => {
           }
         })
       } else {
-        return res.json({success: false, msg: 'Wrong password'});
+        return res.status(401).json({"status":401 ,"messages":" The username or password is incorrect"});  
       }
     });
   });
@@ -59,6 +60,17 @@ router.post('/authenticate', (req, res, next) => {
 // Profile
 router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
   res.json({user: req.user});
+});
+
+
+/**
+ * user list 
+ */
+router.get('/users',passport.authenticate('jwt', {session:false}), (req, res)=>{
+  User.users(function (err,users){
+    if(err) throw err;    
+    return res.status(200).json(common.response(200,null ,users.length, users));
+   });
 });
 
 module.exports = router;
