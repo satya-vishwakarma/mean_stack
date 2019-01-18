@@ -42,4 +42,8 @@ export class ListProductComponent implements OnInit {
     this.listData = this.productsservice.getProduct();
   }
 
+  editProduct($key){
+    this.dialogservice.openConfirmDialog({msg : $key});
+  }
+
 }

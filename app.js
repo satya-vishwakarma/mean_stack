@@ -1,4 +1,5 @@
 const express = require('express');
+const JWT = require('jsonwebtoken');
 const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
