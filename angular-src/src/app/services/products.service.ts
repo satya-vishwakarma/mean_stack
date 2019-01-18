@@ -36,7 +36,7 @@ export class ProductsService {
    */
   saveProduct(prod_data) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
-    return this.http.post(this.apiUrl+'/product/save-product', JSON.stringify(prod_data), { headers: headers })
+    return this.http.post(this.apiUrl+'product/save-product', JSON.stringify(prod_data), { headers: headers })
       .pipe( catchError(( res : HttpErrorResponse)=>{
        this.GrowlService.error(this.errorMasses);
         return res.error;
