@@ -22,6 +22,7 @@ import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-c
 
 
 
+
 const appRoutes: Routes =  [
   {path:'', component: DashboardComponent},
   {path:'register', component: RegisterComponent},

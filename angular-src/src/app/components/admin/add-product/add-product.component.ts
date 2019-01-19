@@ -58,7 +58,7 @@ export class AddProductComponent implements OnInit {
       });
   }
 
-  addToast() {
+  addToast() {~
 
     this.GrowlService.success('Product add Successfully.....');
 

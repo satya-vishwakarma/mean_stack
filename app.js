@@ -22,7 +22,7 @@ const config = require('./config/database');
 mongoose.connect(config.database, { useMongoClient: true});
 // On Connection
 mongoose.connection.on('connected', () => {
-  console.log('Connected to Database '+config.database);
+  console.log('Connected to Database '+ config.database);
 });
 // On Error
 mongoose.connection.on('error', (err) => {
@@ -56,7 +56,6 @@ require('./config/passport')(passport);
 
 app.use('/users', users);
 app.use('/product', product);
-
 
 // Index Route
 app.get('/', (req, res) => {
