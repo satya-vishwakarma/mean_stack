@@ -4,9 +4,6 @@ import { ProductsService } from '../../../services/products.service';
 import { GrowlService } from '../../../services/growl.service';
 import { Router } from '@angular/router';
 
-
-
-
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
@@ -57,11 +54,4 @@ export class AddProductComponent implements OnInit {
         }
       });
   }
-
-  addToast() {~
-
-    this.GrowlService.success('Product add Successfully.....');
-
-  }
-
 }

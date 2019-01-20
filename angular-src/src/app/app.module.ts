@@ -19,7 +19,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AddProductComponent } from './components/admin/add-product/add-product.component';
 import { ListProductComponent } from './components/list-product/list-product.component';
 import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
+import { AuthGuard } from  './guards/auth.guard';
+import { AuthService } from "./services/auth.service";
 
+ 
 
 
 
@@ -29,8 +32,8 @@ const appRoutes: Routes =  [
   {path:'login', component: LoginComponent}, 
   {path:'profile', component: ProfileComponent},
   {path:'dashboard', component: DashboardComponent},
-  {path:'admin/add-product', component: AddProductComponent},
-  {path:'admin/list-product' , component : ListProductComponent}
+  {path:'admin/add-product', component: AddProductComponent ,canActivate : [AuthGuard]},
+  {path:'admin/list-product' , component : ListProductComponent , canActivate : [AuthGuard]}
 ]
 
 
@@ -53,7 +56,7 @@ const appRoutes: Routes =  [
     BrowserAnimationsModule,
     ToastyModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthService ,AuthGuard],
   bootstrap: [AppComponent],
   entryComponents: [MatConfirmDialogComponent]
 })
