@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { GrowlService } from './growl.service';
-import { catchError, map } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
 import { tokenNotExpired } from 'angular2-jwt';
+import { catchError, map } from 'rxjs/operators';
+import { GrowlService } from './growl.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +12,7 @@ export class AuthService {
   user: any;
   public apiUrl = "http://localhost:3000/";
   public errorMasses = "Service unavailable. please try again later";
+  private return_msg  :any;
   constructor(
     private http: HttpClient,
     private GrowlService: GrowlService
@@ -27,9 +28,14 @@ export class AuthService {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
     return this.http.post(this.apiUrl + 'users/authenticate', JSON.stringify(user), { headers: headers })
       .pipe(catchError((res: HttpErrorResponse) => {
-        this.GrowlService.error(this.errorMasses);
+        if (res.error.status == 401) {
+          this.return_msg  = res.error.messages;
+        } else {
+          this.return_msg = this.errorMasses;
+        }
+        this.GrowlService.error(this.return_msg);
         return res.error;
-      }), map((response: Response) => response);
+      }), map((response: Response) => response));
   }
 
   /**
