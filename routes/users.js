@@ -78,7 +78,7 @@ router.get('/users', passport.authenticate('jwt', { session: false }), (req, res
 router.post('/set-session', (req, res) => {
   req.session.email = req.body.email;
   if(typeof req.session.email ==  'undefined')
-    return res.status(422).json('Please send "email" in post data');
+    return res.status(422).json('Email is required!');
   return res.status(200).json(`${req.session.email} set session data`);
 });
 
