@@ -6,7 +6,7 @@ const cors = require('cors');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
-
+const session = require('express-session');
 // Connect To Database (NEW) But not working!!!!!!!!!! (because of secret in db.js!!!!!)
 //const db = require('./config/database');
 // Map global promise - get rid of warning
@@ -34,6 +34,14 @@ const app = express();
 const users = require('./routes/users');
 const product = require('./routes/product');
 
+
+/**
+ * Set Session Middleware
+ */
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}));
+/**
+ * Set body parser Middleware
+ */
 app.use(bodyParser.json());
 
 // Port Number
