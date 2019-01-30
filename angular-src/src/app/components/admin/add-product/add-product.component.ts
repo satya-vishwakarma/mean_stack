@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductsService } from '../../../services/products.service';
 import { GrowlService } from '../../../services/growl.service';
 import { Router } from '@angular/router';
+import { customvalidators } from '../../../shered/custom.validators';
 
 @Component({
   selector: 'app-add-product',
@@ -27,7 +28,9 @@ export class AddProductComponent implements OnInit {
       title: ['', Validators.required],
       image: ['', Validators.required],
       desc: ['', Validators.required],
-      price: ['', Validators.required]
+      price: ['', [Validators.required ,Validators.minLength(2)]]
+    },{
+      validator: customvalidators.isNumber.bind(this)
     });
   }
   get f() {

@@ -21,7 +21,7 @@
       <span matPrefix>$&nbsp;</span>
     </mat-form-field>
     <div class="example-button-row">
-      <button mat-raised-button color="primary">Primary</button>
+      <button mat-raised-button color="primary" [disabled]="!product_form.valid">Primary</button>
     </div>
   </form>
 </mat-card>
