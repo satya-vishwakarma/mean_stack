@@ -7,6 +7,8 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
 const session = require('express-session');
+const expressValidator  = require('express-validator');
+//const { login_url , googlePhoto }  = require('./lib/google');
 // Connect To Database (NEW) But not working!!!!!!!!!! (because of secret in db.js!!!!!)
 //const db = require('./config/database');
 // Map global promise - get rid of warning
@@ -19,6 +21,7 @@ const session = require('express-session');
 //.catch(err => console.log(err));
 
 // Connect To Database (OLD CODE)
+//console.log(url ,'<>', ss);
 mongoose.connect(config.database, { useMongoClient: true});
 // On Connection
 mongoose.connection.on('connected', () => {
@@ -43,6 +46,7 @@ app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}));
  * Set body parser Middleware
  */
 app.use(bodyParser.json());
+app.use(expressValidator());
 
 // Port Number
 const port = config.port || 8080;

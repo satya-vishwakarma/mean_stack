@@ -65,3 +65,11 @@ module.exports.comparePassword = function (candidatePassword, hash, callback) {
 module.exports.users  =  function (callback) {
   User.find({}, callback);
 }
+
+/**
+ * Find in user model 
+ */
+module.exports.findData  = (where,callback)=> {
+  console.log(where);
+  User.find(where, callback);
+};

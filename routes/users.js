@@ -5,14 +5,25 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const User = require('../models/user');
 const common = require('../common/common');
+const { check, validationResult } = require('express-validator/check');
+
 // Register
 router.post('/register', (req, res, next) => {
+  req.check('email' ,'Please enter valid email id').isEmail();
+  req.check('password', 'password must be at least 6 characters.')
+     .isLength({min : 6 , max : 7});
+  let errors = req.validationErrors();
+  if (errors) {
+    //return res.status(422).json({ errors: errors });
+    return res.status(422).json(common.errorRespone(422, 'error', errors));
+  }
   let newUser = new User({
     name: req.body.name,
     email: req.body.email,
     username: req.body.username,
     password: req.body.password
   });
+  User.getUserByUsername(email)
 
   User.addUser(newUser, (err, user) => {
     if (err) {
@@ -87,6 +98,15 @@ router.post('/set-session', (req, res) => {
  */
 router.get('/get-session', (req, res) => {
   return res.status(200).json(`${req.session.email} get session data`);
+});
+
+router.post('/find',(req,res)=>{
+ let find  = { email: req.body.email };
+  User.findData(find , (err, user)=>{
+
+    if(err) throw err;
+    res.status(200).json({ success : true ,data :user._id });
+  });
 });
 
 module.exports = router;
