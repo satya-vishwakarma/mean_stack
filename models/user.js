@@ -70,6 +70,5 @@ module.exports.users  =  function (callback) {
  * Find in user model 
  */
 module.exports.findData  = (where,callback)=> {
-  console.log(where);
   User.find(where, callback);
 };
