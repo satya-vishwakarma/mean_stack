@@ -28,21 +28,21 @@ export class ListProductComponent implements OnInit {
     this.dialogservice.openConfirmDialog({ msg: 'Are you sure to delete this record ?' })
       .afterClosed()
       .subscribe(res => {
-        if (res == true) {         
+        if (res === true) {
           return this.productsservice.deletePoduct($key).subscribe(response => {
-            if (response['success'] == true) {
+            if (response['success'] === true) {
               this.datatable();
             }
-          });          
+          });
         }
       });
   }
-  
+
   datatable() {
     this.listData = this.productsservice.getProduct();
   }
 
-  editProduct($key){
+  editProduct($key) {
     this.dialogservice.openConfirmDialog({msg : $key});
   }
 

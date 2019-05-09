@@ -11,7 +11,7 @@ const { check, validationResult } = require('express-validator/check');
 router.post('/register', (req, res, next) => {
   req.check('email' ,'Please enter valid email id').isEmail();
   req.check('password', 'password must be at least 6 characters.')
-     .isLength({min : 6 , max : 7});
+     .isLength({min : 6 });
   let errors = req.validationErrors();
   if (errors) {
     //return res.status(422).json({ errors: errors });
@@ -23,7 +23,7 @@ router.post('/register', (req, res, next) => {
     username: req.body.username,
     password: req.body.password
   });
-  User.getUserByUsername(email)
+ // User.getUserByUsername(email)
 
   User.addUser(newUser, (err, user) => {
     if (err) {

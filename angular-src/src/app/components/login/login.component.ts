@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
   hide = true;
   post: any;
   rFrom: FormGroup;
-  name: string = '';
-  password: string = '';
+  name = '';
+  password = '';
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     this.rFrom = fb.group({
       name: [null, Validators.required],
       password: [null, Validators.required]
-    })
+    });
   }
 
 
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(post) {
-    var user = {
+    const user = {
       username: post.name,
       password: post.password
     };
@@ -41,12 +41,17 @@ export class LoginComponent implements OnInit {
       .subscribe(data => {
         if (data['success']) {
           this.authService.storeUserData(data['token'], data['user']);
-          this.growlService.success("User login successfully");
+          this.growlService.success('User login successfully');
           this.growlService.Redirect('/dashboard');
           return data;
         } else {
           this.growlService.error('User Name or password is incorrect please try again...');
         }
       });
+  }
+
+  resetForm () {
+   this.rFrom.reset();
+   this.rFrom.markAsUntouched();
   }
 }

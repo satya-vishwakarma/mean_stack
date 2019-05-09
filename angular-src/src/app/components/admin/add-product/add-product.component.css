@@ -10,4 +10,5 @@
   mat-card {
       width: 80%;
       margin: auto;
-  }  
+  } 
+  .mt20 { margin-top: 20px;} 

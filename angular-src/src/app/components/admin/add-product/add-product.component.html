@@ -8,11 +8,7 @@
     <mat-form-field class="example-full-width">
       <input matInput formControlName="title" name="name" placeholder="Product title">
     </mat-form-field>
-
-    <mat-form-field class="example-full-width">
-      <input matInput formControlName="image" name="image" placeholder="Image URL">
-    </mat-form-field>
-
+   
     <mat-form-field class="example-full-width">
       <textarea matInput placeholder="Product Description" formControlName="desc" name="desc"></textarea>
     </mat-form-field>
@@ -20,8 +16,10 @@
       <input matInput placeholder="Amount" type="text" class="example-right-align" formControlName="price" name="price">
       <span matPrefix>$&nbsp;</span>
     </mat-form-field>
-    <div class="example-button-row">
+    <input id="fileToUpload" type="file" name="image" formControlName="image" (change)="fileChangeEvent($event)" >
+    <div class="example-button-row clearfix mt20">
       <button mat-raised-button color="primary" [disabled]="!product_form.valid">Primary</button>
     </div>
   </form>
+  
 </mat-card>

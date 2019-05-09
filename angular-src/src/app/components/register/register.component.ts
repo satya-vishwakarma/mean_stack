@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { customvalidators } from '../../shered/custom.validators';
+import { Customvalidators } from '../../shered/custom.validators';
 
 import { UsersService } from '../../services/users.service';
 import { GrowlService } from 'src/app/services/growl.service';
@@ -16,23 +16,23 @@ export class RegisterComponent implements OnInit {
   hide2 = true;
   submitted = false;
   regForm: FormGroup;
-  userName: string = '';
-  email: string = '';
+  userName = '';
+  email = '';
   phone: number = null;
-  newPassword: string = '';
-  confirmPassoword: string = '';
+  newPassword = '';
+  confirmPassoword = '';
   constructor(
     private regF: FormBuilder,
     private usersService: UsersService,
-    private GrowlService: GrowlService) {
+    private growlService: GrowlService) {
     this.regForm = regF.group({
       userName: [null, Validators.required],
       email: [null, [Validators.required, Validators.email]],
-      phone: [null, Validators.required],
+      phone: [null, [Validators.required, Validators.minLength(6) , Validators.pattern('[0-9]+')]],
       newPassword: [null, Validators.required],
       confirmPassoword: [null, [Validators.required]]
     }, {
-        validator: customvalidators.passwordMatch.bind(this)
+        validator: Customvalidators.passwordMatch.bind(this)
       });
   }
 
@@ -43,17 +43,17 @@ export class RegisterComponent implements OnInit {
 
   register(form_value) {
 
-    var register_data = {
+    const register_data = {
       name: form_value.userName,
       username: form_value.userName,
       email: form_value.email,
       //   phone: form_value.phone,
       password: form_value.newPassword
-    }
+    };
     this.usersService.registerUser(register_data).subscribe(return_data => {
       if (return_data['success']) {
-        this.GrowlService.success(return_data['msg']);
-        this.GrowlService.Redirect('/login');
+        this.growlService.success(return_data['msg']);
+        this.growlService.Redirect('/login');
        // this.regForm.reset();
       }
     });

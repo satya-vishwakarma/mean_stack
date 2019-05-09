@@ -1,6 +1,6 @@
 import { FormGroup } from "@angular/forms";
 
-export class customvalidators {
+export class Customvalidators {
 
     static passwordMatch(constrol: FormGroup) {
 

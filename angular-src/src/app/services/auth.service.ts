@@ -10,37 +10,37 @@ export class AuthService {
 
   authToken: any;
   user: any;
-  public apiUrl = "http://localhost:3000/";
-  public errorMasses = "Service unavailable. please try again later";
-  private return_msg  :any;
+  public apiUrl = 'http://localhost:3000/';
+  public errorMasses = 'Service unavailable. please try again later';
+  private return_msg: any;
   constructor(
     private http: HttpClient,
-    private GrowlService: GrowlService
+    private growlService: GrowlService
   ) { }
 
 
   /**
-   * Request for login 
-   * 
+   * Request for login
+   *
    * @param user object
    */
   authenticate(user) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json; charset=utf-8' });
     return this.http.post(this.apiUrl + 'users/authenticate', JSON.stringify(user), { headers: headers })
       .pipe(catchError((res: HttpErrorResponse) => {
-        if (res.error.status == 401) {
+        if (res.error.status === 401) {
           this.return_msg  = res.error.messages;
         } else {
           this.return_msg = this.errorMasses;
         }
-        this.GrowlService.error(this.return_msg);
+        this.growlService.error(this.return_msg);
         return res.error;
       }), map((response: Response) => response));
   }
 
   /**
    * Store user data
-   * 
+   *
    * @param token any
    * @param user any
    */
@@ -59,13 +59,13 @@ export class AuthService {
   }
 
   /**
-   * Log out 
+   * Log out
    */
   logOut() {
     this.authToken = null;
     this.user = null;
     localStorage.clear();
-    this.GrowlService.success('Logout your session ...');
-    this.GrowlService.Redirect('/login');
+    this.growlService.success('Logout your session ...');
+    this.growlService.Redirect('/login');
   }
 }

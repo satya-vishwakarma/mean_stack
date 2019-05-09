@@ -46,10 +46,11 @@ app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}));
  * Set body parser Middleware
  */
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 
 // Port Number
-const port = config.port || 8080;
+const port = config.port || 3000;
 
 // CORS Middleware
 app.use(cors());
